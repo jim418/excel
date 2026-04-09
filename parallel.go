@@ -127,6 +127,11 @@ func (d *ParallelDecoder) parseStructMapping() error {
 	return nil
 }
 
+type rowData struct {
+	rowNum int
+	cols   []string
+}
+
 // DecodeAllParallel 并行解码所有行
 func (d *ParallelDecoder) DecodeAllParallel(result interface{}) error {
 	resultPtr := reflect.ValueOf(result)
@@ -151,10 +156,6 @@ func (d *ParallelDecoder) DecodeAllParallel(result interface{}) error {
 	}
 	rows.Next()
 
-	type rowData struct {
-		rowNum int
-		cols   []string
-	}
 	allRows := make([]rowData, 0)
 	rowNum := d.headerRow + 1
 	for rows.Next() {

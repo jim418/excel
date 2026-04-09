@@ -70,7 +70,7 @@ func AddDataValidationToColumn(f *excelize.File, sheet string, column string, st
 			case "time":
 				valType = excelize.DataValidationTypeTime
 			case "textLength":
-				valType = excelize.DataValidationTypeTextLeng
+				valType = excelize.DataValidationTypeTextLength
 			default:
 				valType = excelize.DataValidationTypeWhole
 			}
@@ -80,7 +80,7 @@ func AddDataValidationToColumn(f *excelize.File, sheet string, column string, st
 			dataVal.SetRange(int(f1), int(f2), valType, op)
 
 		case "list":
-			dataVal.SetSqrefDropList(dv.Formula1, true)
+			dataVal.SetSqrefDropList(dv.Formula1)
 		}
 	}
 
